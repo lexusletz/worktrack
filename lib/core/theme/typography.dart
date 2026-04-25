@@ -10,23 +10,11 @@ final textThemeProvider = Provider<TextTheme>((ref) {
 
   return switch (fontFamily) {
     FontFamilyOptions.merriweather => GoogleFonts.merriweatherTextTheme(),
-    FontFamilyOptions.nunito => GoogleFonts.nunitoTextTheme(),
     FontFamilyOptions.inter => GoogleFonts.interTextTheme(),
-    FontFamilyOptions.montserrat => GoogleFonts.montserratTextTheme(),
     FontFamilyOptions.poppins => GoogleFonts.poppinsTextTheme(),
     FontFamilyOptions.rubik => GoogleFonts.rubikTextTheme(),
-    FontFamilyOptions.workSans => GoogleFonts.workSansTextTheme(),
-    FontFamilyOptions.manrope => GoogleFonts.manropeTextTheme(),
+    FontFamilyOptions.fredoka => GoogleFonts.fredokaTextTheme(),
   };
 });
 
-enum FontFamilyOptions {
-  merriweather,
-  nunito,
-  inter,
-  montserrat,
-  poppins,
-  rubik,
-  workSans,
-  manrope,
-}
+enum FontFamilyOptions { merriweather, inter, poppins, rubik, fredoka }

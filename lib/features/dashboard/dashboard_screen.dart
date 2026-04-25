@@ -44,7 +44,8 @@ class DashboardScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Expanded(flex: 2, child: CalendarGrid()),
-                SizedBox(
+                Container(
+                  constraints: BoxConstraints(minWidth: 330),
                   width: MediaQuery.of(context).size.width * 0.2,
                   child: DayEditorPanel(),
                 ),

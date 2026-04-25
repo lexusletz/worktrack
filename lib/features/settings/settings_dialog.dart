@@ -103,10 +103,13 @@ class _SettingsDialogState extends ConsumerState<SettingsDialog> {
                   children: [
                     TextButton(
                       onPressed: () => Navigator.of(context).pop(),
-                      child: Text(l10n.cancel),
+                      child: Text(l10n.cancel, style: TextStyle(fontSize: 16)),
                     ),
                     const SizedBox(width: 8),
-                    FilledButton(onPressed: _save, child: Text(l10n.save)),
+                    FilledButton(
+                      onPressed: _save,
+                      child: Text(l10n.save, style: TextStyle(fontSize: 16)),
+                    ),
                   ],
                 ),
               ],

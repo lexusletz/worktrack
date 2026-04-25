@@ -23,6 +23,7 @@ class CurrencySymbolField extends StatelessWidget {
         labelText: l10n.currencySymbolLabel,
         hintText: r'$',
         border: OutlineInputBorder(),
+        labelStyle: TextStyle(fontSize: 16),
       ),
       maxLength: 3,
       inputFormatters: [LengthLimitingTextInputFormatter(3)],

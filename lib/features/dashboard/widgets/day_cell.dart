@@ -66,13 +66,14 @@ class DayCell extends StatelessWidget {
                       color: isNonWorkday
                           ? theme.colorScheme.onSurface.withAlpha(80)
                           : null,
+                      fontSize: 18,
                     ),
                   ),
                   const Spacer(),
                   if (!isNonWorkday)
                     Container(
-                      width: 7,
-                      height: 7,
+                      width: 10,
+                      height: 10,
                       decoration: BoxDecoration(
                         color: dotColor,
                         shape: BoxShape.circle,
@@ -91,6 +92,7 @@ class DayCell extends StatelessWidget {
                           ? theme.colorScheme.onSurface.withAlpha(80)
                           : dotColor,
                       fontWeight: FontWeight.w600,
+                      fontSize: 16,
                     ),
                   ),
                 ),

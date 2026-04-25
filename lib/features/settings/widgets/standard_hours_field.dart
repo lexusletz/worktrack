@@ -23,6 +23,7 @@ class StandardHoursField extends StatelessWidget {
         labelText: l10n.standardHoursLabel,
         suffixText: l10n.hoursAbbreviation,
         border: OutlineInputBorder(),
+        labelStyle: TextStyle(fontSize: 16),
       ),
       keyboardType: const TextInputType.numberWithOptions(decimal: true),
       inputFormatters: [

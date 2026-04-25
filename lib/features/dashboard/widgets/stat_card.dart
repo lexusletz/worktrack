@@ -38,21 +38,27 @@ class StatCard extends StatelessWidget {
                 color: emphasized
                     ? theme.colorScheme.onPrimaryContainer
                     : theme.colorScheme.onSurfaceVariant,
+                fontSize: 16,
               ),
             ),
             const SizedBox(height: 4),
-            Text(
-              value,
-              style:
-                  (emphasized
-                          ? theme.textTheme.titleLarge
-                          : theme.textTheme.titleMedium)
-                      ?.copyWith(
-                        fontWeight: FontWeight.bold,
-                        color: emphasized
-                            ? theme.colorScheme.onPrimaryContainer
-                            : null,
-                      ),
+            SizedBox(
+              width: double.infinity,
+              child: Text(
+                value,
+                style:
+                    (emphasized
+                            ? theme.textTheme.titleLarge
+                            : theme.textTheme.titleMedium)
+                        ?.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: emphasized
+                              ? theme.colorScheme.onPrimaryContainer
+                              : null,
+                          fontSize: 24,
+                        ),
+                textAlign: TextAlign.right,
+              ),
             ),
           ],
         ),

@@ -30,7 +30,7 @@ class WorkingDaysSelector extends StatelessWidget {
       children: [
         Text(
           AppLocalizations.of(context)!.workingDaysLabel,
-          style: Theme.of(context).textTheme.bodySmall,
+          style: Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 14),
         ),
         const SizedBox(height: 8),
         Wrap(

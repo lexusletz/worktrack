@@ -36,7 +36,9 @@ class MonthNavigator extends ConsumerWidget {
                 AppLocalizations.of(context)!.localeName,
               ).format(browsedMonth).capitalize(),
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.titleMedium,
+              style: Theme.of(
+                context,
+              ).textTheme.titleMedium!.copyWith(fontSize: 18),
             ),
           ),
           IconButton(
@@ -63,7 +65,10 @@ class MonthNavigator extends ConsumerWidget {
                       now.day,
                     );
                   },
-            child: Text(AppLocalizations.of(context)!.todayLabel),
+            child: Text(
+              AppLocalizations.of(context)!.todayLabel,
+              style: TextStyle(fontSize: 16),
+            ),
           ),
         ],
       ),

@@ -60,6 +60,7 @@ class CalendarGrid extends ConsumerWidget {
                         h,
                         style: Theme.of(context).textTheme.labelSmall?.copyWith(
                           fontWeight: FontWeight.bold,
+                          fontSize: 14,
                         ),
                       ),
                     ),
@@ -78,6 +79,7 @@ class CalendarGrid extends ConsumerWidget {
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 7,
                 childAspectRatio: 1,
+                mainAxisExtent: 180,
               ),
               itemCount: leadingBlanks + daysInMonth,
               itemBuilder: (_, i) {

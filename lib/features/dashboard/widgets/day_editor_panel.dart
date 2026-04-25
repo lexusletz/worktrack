@@ -109,7 +109,7 @@ class _DayEditorPanelState extends ConsumerState<DayEditorPanel> {
                 DateFormat.yMMMMEEEEd(
                   AppLocalizations.of(context)!.localeName,
                 ).format(selectedDay).capitalize(),
-                style: theme.textTheme.titleSmall,
+                style: theme.textTheme.titleSmall!.copyWith(fontSize: 16),
               ),
               const SizedBox(height: 20),
               Container(
@@ -180,14 +180,20 @@ class _DayEditorPanelState extends ConsumerState<DayEditorPanel> {
                   if (log != null)
                     OutlinedButton(
                       onPressed: () => _clear(selectedDay),
-                      child: Text(AppLocalizations.of(context)!.clear),
+                      child: Text(
+                        AppLocalizations.of(context)!.clear,
+                        style: TextStyle(fontSize: 16),
+                      ),
                     ),
                   const Spacer(),
                   FilledButton(
                     onPressed: _hoursController.text.isEmpty && log == null
                         ? null
                         : () => _save(selectedDay),
-                    child: Text(AppLocalizations.of(context)!.save),
+                    child: Text(
+                      AppLocalizations.of(context)!.save,
+                      style: TextStyle(fontSize: 16),
+                    ),
                   ),
                 ],
               ),

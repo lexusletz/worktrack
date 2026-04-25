@@ -23,6 +23,7 @@ class HourlyRateField extends StatelessWidget {
         labelText: AppLocalizations.of(context)!.hourlyRateLabel,
         prefixText: '$currencySymbol ',
         border: const OutlineInputBorder(),
+        labelStyle: TextStyle(fontSize: 16),
       ),
       keyboardType: const TextInputType.numberWithOptions(decimal: true),
       inputFormatters: [
