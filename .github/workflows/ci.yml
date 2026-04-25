@@ -21,7 +21,13 @@ jobs:
                   cache: true
             - run: flutter pub get
             - run: flutter build apk --release
-            - uses: actions/upload-artifact@v4
+            - uses: comnoco/create-release@v2
+              env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               with:
-                name: release-apk
-                path: build/app/outputs/apk/release/app-release.apk
+                name: "Release Android"
+                commit: "${{ github.sha }}"
+                body: "Release APK Android"
+                draft: false
+                prerelease: false
+                assets: "build/app/outputs/apk/release/*.apk"
