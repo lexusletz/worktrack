@@ -9,7 +9,9 @@ import '../../../l10n/app_localizations.dart';
 import '../state/dashboard_providers.dart';
 
 class DayEditorPanel extends ConsumerStatefulWidget {
-  const DayEditorPanel({super.key});
+  const DayEditorPanel({super.key, this.onSaved});
+
+  final VoidCallback? onSaved;
 
   @override
   ConsumerState<DayEditorPanel> createState() => _DayEditorPanelState();
@@ -50,6 +52,7 @@ class _DayEditorPanelState extends ConsumerState<DayEditorPanel> {
           : _notesController.text.trim(),
     );
     await ref.read(worklogRepositoryProvider).put(log);
+    widget.onSaved?.call();
   }
 
   Future<void> _clear(DateTime day) async {

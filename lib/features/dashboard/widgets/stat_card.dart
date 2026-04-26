@@ -55,7 +55,7 @@ class StatCard extends StatelessWidget {
                           color: emphasized
                               ? theme.colorScheme.onPrimaryContainer
                               : null,
-                          fontSize: 24,
+                          fontSize: 22,
                         ),
                 textAlign: TextAlign.right,
               ),

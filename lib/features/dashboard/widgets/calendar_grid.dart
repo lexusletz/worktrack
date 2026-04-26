@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:work_track/features/dashboard/widgets/day_editor_panel.dart';
 import '../../../core/forecast/forecast_providers.dart';
 import '../../../core/settings/settings_providers.dart';
 import '../../../core/worklog/worklog_model.dart';
@@ -76,10 +77,12 @@ class CalendarGrid extends ConsumerWidget {
             ).copyWith(scrollbars: false),
             child: GridView.builder(
               padding: const EdgeInsets.only(left: 8, right: 8, bottom: 8),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 7,
                 childAspectRatio: 1,
-                mainAxisExtent: 180,
+                mainAxisExtent: MediaQuery.of(context).size.width <= 600
+                    ? 90
+                    : 180,
               ),
               itemCount: leadingBlanks + daysInMonth,
               itemBuilder: (_, i) {
@@ -107,8 +110,26 @@ class CalendarGrid extends ConsumerWidget {
                   isSelected: isSelected,
                   isToday: isToday,
                   hoursWorked: log?.hoursWorked,
-                  onTap: () =>
-                      ref.read(selectedDayProvider.notifier).state = date,
+                  onTap: () {
+                    ref.read(selectedDayProvider.notifier).state = date;
+                    if (MediaQuery.of(context).size.width < 600) {
+                      showModalBottomSheet<void>(
+                        context: context,
+                        isScrollControlled: true,
+                        useSafeArea: true,
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.vertical(
+                            top: Radius.circular(20),
+                          ),
+                        ),
+                        builder: (_) => DayEditorPanel(
+                          onSaved: () => Navigator.of(context).pop(),
+                        ),
+                      ).then((_) {
+                        ref.read(selectedDayProvider.notifier).state = null;
+                      });
+                    }
+                  },
                 );
               },
             ),

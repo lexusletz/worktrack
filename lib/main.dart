@@ -19,14 +19,22 @@ void main() async {
   Hive.registerAdapter(WorkLogAdapter());
   final worklogBox = await Hive.openBox<WorkLog>('worklogs');
 
-  // TODO: If the device is a phone, force portrait orientation
+  // If the device is a phone, force portrait orientation
   // else force landscape orientation
+  final view = WidgetsBinding.instance.platformDispatcher.views.first;
+  final logicalShortestSide = view.physicalSize.shortestSide / view.devicePixelRatio;
 
-  // Force landscape mode
-  SystemChrome.setPreferredOrientations([
-    DeviceOrientation.landscapeLeft,
-    DeviceOrientation.landscapeRight,
-  ]);
+  if (logicalShortestSide < 600) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+  } else {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.landscapeRight,
+    ]);
+  }
 
   // Hide system UI (status bar, navigation bar)
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);

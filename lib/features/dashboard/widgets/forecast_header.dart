@@ -28,38 +28,61 @@ class ForecastHeader extends ConsumerWidget {
         child: Text('Forecast error: $e'),
       ),
       data: (f) => Padding(
-        padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
-        child: Row(
-          children: [
-            Expanded(
-              child: StatCard(
-                label: AppLocalizations.of(context)!.accumulatedLabel,
-                value: fmt(f.accumulated),
-              ),
-            ),
-            const SizedBox(width: 8),
-            Expanded(
-              child: StatCard(
-                label: AppLocalizations.of(context)!.remainingLabel,
-                value: fmt(f.remaining),
-              ),
-            ),
-            const SizedBox(width: 8),
-            Expanded(
-              child: StatCard(
-                label: AppLocalizations.of(context)!.estimatedLabel,
-                value: fmt(f.estimate),
-                emphasized: true,
-              ),
-            ),
-            const SizedBox(width: 8),
-            Expanded(
-              child: StatCard(
-                label: AppLocalizations.of(context)!.targetLabel,
-                value: fmt(f.target),
-              ),
-            ),
-          ],
+        padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            final card1 = StatCard(
+              label: AppLocalizations.of(context)!.accumulatedLabel,
+              value: fmt(f.accumulated),
+            );
+            final card2 = StatCard(
+              label: AppLocalizations.of(context)!.remainingLabel,
+              value: fmt(f.remaining),
+            );
+            final card3 = StatCard(
+              label: AppLocalizations.of(context)!.estimatedLabel,
+              value: fmt(f.estimate),
+              emphasized: true,
+            );
+            final card4 = StatCard(
+              label: AppLocalizations.of(context)!.targetLabel,
+              value: fmt(f.target),
+            );
+
+            if (constraints.maxWidth < 600) {
+              return Column(
+                children: [
+                  Row(
+                    children: [
+                      Expanded(child: card1),
+                      const SizedBox(width: 8),
+                      Expanded(child: card2),
+                    ],
+                  ),
+                  const SizedBox(height: 8),
+                  Row(
+                    children: [
+                      Expanded(child: card3),
+                      const SizedBox(width: 8),
+                      Expanded(child: card4),
+                    ],
+                  ),
+                ],
+              );
+            }
+
+            return Row(
+              children: [
+                Expanded(child: card1),
+                const SizedBox(width: 8),
+                Expanded(child: card2),
+                const SizedBox(width: 8),
+                Expanded(child: card3),
+                const SizedBox(width: 8),
+                Expanded(child: card4),
+              ],
+            );
+          },
         ),
       ),
     );

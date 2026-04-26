@@ -38,17 +38,22 @@ class DashboardScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           ForecastHeader(),
+          Divider(
+            thickness: 0.4,
+            color: Theme.of(context).colorScheme.primary.withAlpha(90),
+          ),
           MonthNavigator(),
           Expanded(
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Expanded(flex: 2, child: CalendarGrid()),
-                Container(
-                  constraints: BoxConstraints(minWidth: 330),
-                  width: MediaQuery.of(context).size.width * 0.2,
-                  child: DayEditorPanel(),
-                ),
+                if (MediaQuery.of(context).size.width >= 600)
+                  Container(
+                    constraints: BoxConstraints(minWidth: 330),
+                    width: MediaQuery.of(context).size.width * 0.2,
+                    child: DayEditorPanel(),
+                  ),
               ],
             ),
           ),
