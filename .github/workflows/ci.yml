@@ -38,12 +38,15 @@ jobs:
         run: flutter test
 
       - name: Build APK
+        if: startsWith(github.ref, 'refs/tags/')
         run: flutter build apk --release
 
       - name: Get the version
+        if: startsWith(github.ref, 'refs/tags/')
         run: echo "release_version=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
 
       - name: Move APK
+        if: startsWith(github.ref, 'refs/tags/')
         run: mv build/app/outputs/apk/release/app-release.apk build/app/outputs/apk/release/worktrack_v${{ env.release_version }}.apk
 
       - name: Generate version.json
