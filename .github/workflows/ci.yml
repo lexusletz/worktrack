@@ -7,8 +7,6 @@ on:
   pull_request:
     branches: ['main']
 
-
-
 jobs:
   build-and-release:
     runs-on: ubuntu-latest
@@ -67,7 +65,6 @@ jobs:
         with:
           commit_message: "Update version.json for new release"
           commit_options: "--signoff"
-          branch: ${{ github.head_ref }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         
