@@ -1,0 +1,36 @@
+name: Release Handler
+
+on:
+  release:
+    types: [published]
+
+jobs:
+    after-release:
+        runs-on: ubuntu-latest
+        permissions:
+            contents: write
+        steps:
+          - name: Checkout
+            uses: actions/checkout@v4
+          
+          - name: Get the version
+            run: echo "release_version=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+          
+          - name: Generate version.json
+            run: |
+              cat << EOF > version.json
+              {
+                "version": "${{ env.release_version }}",
+                "url": "https://github.com/lexusletz/WorkTrack/releases/latest/download/app-release.apk\"
+              }
+              EOF
+
+          - name: Commit changes
+            run: |
+                git config user.name 'Github Action'
+                git config user.email 'action@github.com'
+                git add .
+                git commit -m "Update version.json for new release" || exit 0
+                git push
+            env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
