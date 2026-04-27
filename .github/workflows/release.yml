@@ -3,6 +3,7 @@ name: Release Handler
 on:
   release:
     types: [published]
+  workflow_dispatch:
 
 jobs:
     after-release:
@@ -21,7 +22,7 @@ jobs:
               cat << EOF > version.json
               {
                 "version": "${{ env.release_version }}",
-                "url": "https://github.com/lexusletz/WorkTrack/releases/latest/download/app-release.apk\"
+                "download_url": "https://github.com/lexusletz/WorkTrack/releases/latest/download/app-release.apk"
               }
               EOF
 
