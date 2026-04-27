@@ -62,14 +62,14 @@ jobs:
 
       - name: Commit changes
         if: startsWith(github.ref, 'refs/tags/')
-        run: |
-          git config user.name 'Github Action'
-          git config user.email 'action@github.com'
-          git add .
-          git commit -m "Update version.json for new release" || exit 0
-          git push origin HEAD:main
+        uses: stefanzweifel/git-auto-commit-action@v7
+        with:
+          commit_message: "Update version.json for new release"
+          commit_options: "--signoff"
+          branch: ${{ github.head_ref }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        
 
       - name: Create Release and Upload APK
         if: startsWith(github.ref, 'refs/tags/')
