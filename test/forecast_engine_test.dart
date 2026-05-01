@@ -40,6 +40,7 @@ void main() {
       settings: settings,
       monthLogs: [],
       today: today,
+      month: today,
     );
 
     final workdays = workdaysInApril2026();
@@ -62,6 +63,7 @@ void main() {
       settings: settings,
       monthLogs: logs,
       today: today,
+      month: today,
     );
     expect(f.accumulated, 2 * 8 * 25);
   });
@@ -73,6 +75,7 @@ void main() {
       settings: settings,
       monthLogs: [],
       today: today,
+      month: today,
     );
     expect(f.accumulated, 0);
   });
@@ -86,6 +89,7 @@ void main() {
         settings: settings,
         monthLogs: logs,
         today: today,
+        month: today,
       );
       expect(f.accumulated, 0);
       final status = dayStatusFor(DateTime(2026, 4, 1), logs.first, settings);
@@ -106,11 +110,13 @@ void main() {
       settings: settings,
       monthLogs: [],
       today: today,
+      month: today,
     ).target;
     final f = ForecastEngine.compute(
       settings: settings,
       monthLogs: logs,
       today: today,
+      month: today,
     );
     expect(f.target, targetBefore); // target unchanged
     expect(f.accumulated, 4 * 25); // extra hours counted
@@ -128,11 +134,13 @@ void main() {
       settings: settings,
       monthLogs: logs,
       today: today,
+      month: today,
     );
     final fNoLog = ForecastEngine.compute(
       settings: settings,
       monthLogs: [],
       today: today,
+      month: today,
     );
     // With 4h pre-log vs standard 8h → remaining should be less by 4 * rate
     expect(fWithLog.remaining, fNoLog.remaining - 4 * 25);

@@ -4,14 +4,22 @@ import 'forecast_model.dart';
 
 class ForecastEngine {
   static Forecast compute({
+    /// The user settings
     required Settings settings,
+
+    /// The worklogs for the month being browsed
     required List<WorkLog> monthLogs,
+
+    /// The current date
     required DateTime today,
+
+    /// The month to calculate the forecast for
+    required DateTime month,
   }) {
     final rate = settings.hourlyRate;
     final todayDate = DateTime(today.year, today.month, today.day);
-    final monthStart = DateTime(today.year, today.month, 1);
-    final monthEnd = DateTime(today.year, today.month + 1, 0);
+    final monthStart = DateTime(month.year, month.month, 1);
+    final monthEnd = DateTime(month.year, month.month + 1, 0);
 
     final logsByKey = <String, WorkLog>{for (final l in monthLogs) l.key: l};
 
