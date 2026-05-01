@@ -9,9 +9,16 @@ class Forecast {
     required this.target,
   });
 
+  /// The total estimated earnings in the current month.
   final double accumulated;
+
+  /// The total estimated earnings for the remaining work in the current month.
   final double remaining;
+
+  /// The total estimated earnings in the current month.
   final double estimate;
+
+  /// The total estimated earnings for the month if all work is completed.
   final double target;
 
   static const zero = Forecast(
