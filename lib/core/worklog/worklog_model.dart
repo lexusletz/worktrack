@@ -2,17 +2,17 @@ import 'package:flutter/foundation.dart';
 import 'package:hive/hive.dart';
 import '../settings/settings_model.dart';
 
-enum DayStatus { pending, completed, missed, extra, nonWorkday }
+enum DayStatus { PENDING, COMPLETED, MISSED, EXTRA, NONWORKDAY }
 
 DayStatus dayStatusFor(DateTime day, WorkLog? log, Settings settings) {
   if (log == null) {
     return settings.workingDays.contains(day.weekday)
-        ? DayStatus.pending
-        : DayStatus.nonWorkday;
+        ? DayStatus.PENDING
+        : DayStatus.NONWORKDAY;
   }
-  if (log.hoursWorked == 0) return DayStatus.missed;
-  if (log.isExtraDay) return DayStatus.extra;
-  return DayStatus.completed;
+  if (log.hoursWorked == 0) return DayStatus.MISSED;
+  if (log.isExtraDay) return DayStatus.EXTRA;
+  return DayStatus.COMPLETED;
 }
 
 @immutable

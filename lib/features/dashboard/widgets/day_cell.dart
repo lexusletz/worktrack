@@ -20,18 +20,18 @@ class DayCell extends StatelessWidget {
   final VoidCallback onTap;
 
   static const _statusColors = {
-    DayStatus.pending: Color(0xFFBDBDBD),
-    DayStatus.completed: Color(0xFF66BB6A),
-    DayStatus.missed: Color(0xFFEF5350),
-    DayStatus.extra: Color(0xFF5C6BC0),
-    DayStatus.nonWorkday: Colors.transparent,
+    DayStatus.PENDING: Color(0xFFBDBDBD),
+    DayStatus.COMPLETED: Color(0xFF66BB6A),
+    DayStatus.MISSED: Color(0xFFEF5350),
+    DayStatus.EXTRA: Color(0xFF5C6BC0),
+    DayStatus.NONWORKDAY: Colors.transparent,
   };
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final dotColor = _statusColors[status]!;
-    final isNonWorkday = status == DayStatus.nonWorkday;
+    final isNonWorkday = status == DayStatus.NONWORKDAY;
 
     return GestureDetector(
       onTap: onTap,

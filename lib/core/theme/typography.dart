@@ -5,16 +5,15 @@ import '../settings/settings_providers.dart';
 
 final textThemeProvider = Provider<TextTheme>((ref) {
   final settings = ref.watch(settingsProvider);
-  final fontFamily =
-      settings.value?.fontFamily ?? FontFamilyOptions.merriweather;
+  final fontFamily = settings.value?.fontFamily ?? FontFamilyOptions.FREDOKA;
 
   return switch (fontFamily) {
-    FontFamilyOptions.merriweather => GoogleFonts.merriweatherTextTheme(),
-    FontFamilyOptions.inter => GoogleFonts.interTextTheme(),
-    FontFamilyOptions.poppins => GoogleFonts.poppinsTextTheme(),
-    FontFamilyOptions.rubik => GoogleFonts.rubikTextTheme(),
-    FontFamilyOptions.fredoka => GoogleFonts.fredokaTextTheme(),
+    FontFamilyOptions.MERRIWEATHER => GoogleFonts.merriweatherTextTheme(),
+    FontFamilyOptions.INTER => GoogleFonts.interTextTheme(),
+    FontFamilyOptions.POPPINS => GoogleFonts.poppinsTextTheme(),
+    FontFamilyOptions.RUBIK => GoogleFonts.rubikTextTheme(),
+    FontFamilyOptions.FREDOKA => GoogleFonts.fredokaTextTheme(),
   };
 });
 
-enum FontFamilyOptions { merriweather, inter, poppins, rubik, fredoka }
+enum FontFamilyOptions { MERRIWEATHER, INTER, POPPINS, RUBIK, FREDOKA }

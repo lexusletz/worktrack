@@ -30,7 +30,7 @@ class Settings {
     },
     standardHoursPerDay: 8,
     currencySymbol: r'$',
-    fontFamily: FontFamilyOptions.merriweather,
+    fontFamily: FontFamilyOptions.FREDOKA,
   );
 
   Settings copyWith({
@@ -64,7 +64,7 @@ class Settings {
     currencySymbol: j['currencySymbol'] as String,
     fontFamily: FontFamilyOptions.values.firstWhere(
       (e) => e.name == j['fontFamily'],
-      orElse: () => FontFamilyOptions.merriweather,
+      orElse: () => FontFamilyOptions.FREDOKA,
     ),
   );
 

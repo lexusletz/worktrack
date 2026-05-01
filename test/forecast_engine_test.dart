@@ -16,7 +16,7 @@ void main() {
     },
     standardHoursPerDay: 8,
     currencySymbol: r'$',
-    fontFamily: FontFamilyOptions.merriweather,
+    fontFamily: FontFamilyOptions.FREDOKA,
   );
 
   // Use April 2026 as test month (known structure)
@@ -93,7 +93,7 @@ void main() {
       );
       expect(f.accumulated, 0);
       final status = dayStatusFor(DateTime(2026, 4, 1), logs.first, settings);
-      expect(status, DayStatus.missed);
+      expect(status, DayStatus.MISSED);
     },
   );
 

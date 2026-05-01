@@ -96,7 +96,7 @@ class CalendarGrid extends ConsumerWidget {
                 final log = logMap[WorkLog.keyFor(date)];
                 final status = settings != null
                     ? dayStatusFor(date, log, settings)
-                    : DayStatus.nonWorkday;
+                    : DayStatus.NONWORKDAY;
                 final isSelected =
                     selectedDay != null &&
                     selectedDay.year == date.year &&

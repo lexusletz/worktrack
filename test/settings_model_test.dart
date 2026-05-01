@@ -10,7 +10,7 @@ void main() {
         workingDays: {DateTime.monday, DateTime.wednesday, DateTime.friday},
         standardHoursPerDay: 7.5,
         currencySymbol: '€',
-        fontFamily: FontFamilyOptions.merriweather,
+        fontFamily: FontFamilyOptions.FREDOKA,
       );
 
       final roundTripped = Settings.fromJsonString(original.toJsonString());
