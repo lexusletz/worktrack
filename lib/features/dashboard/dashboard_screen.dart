@@ -34,10 +34,23 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
         await showDialog<void>(
           context: context,
           builder: (_) => AlertDialog(
-            title: const Text("Actualizacion Disponible"),
+            title: Text("Actualizacion Disponible - ${next.newVersion}"),
             content: Text(
               "La version ${next.newVersion} esta disponible. Deseas actualizar ahora?",
             ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(),
+                child: const Text("Más tarde"),
+              ),
+              FilledButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  ref.read(updaterProvider.notifier).downloadAndInstallUpdate();
+                },
+                child: const Text("Actualizar ahora"),
+              ),
+            ],
           ),
         );
       }

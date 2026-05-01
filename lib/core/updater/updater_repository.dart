@@ -1,18 +1,21 @@
 import 'dart:convert';
 
 import 'package:android_package_installer/android_package_installer.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_file_downloader/flutter_file_downloader.dart';
+import 'package:logging/logging.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:http/http.dart' as http;
 import 'updater_model.dart';
 
 class UpdaterRepository {
+  final Logger logger = Logger('UpdaterRepository');
+
   final PackageInfo _packageInfo;
 
   UpdaterRepository(this._packageInfo);
 
   Future<Updater> checkForUpdates() async {
+    logger.info("Checking for updates...");
     final currentVersion = _getLocalVersion();
 
     try {
@@ -30,6 +33,10 @@ class UpdaterRepository {
         newVersionString,
       ).isNewerThan(currentVersion);
 
+      logger.info("Is there a new version available?: $isNewer");
+      logger.info("Current app version: v${_packageInfo.version}");
+      logger.info("Latest version available on github: $newVersionString");
+
       return Updater(
         isNewerVersionAvailable: isNewer,
         currentVersion: _packageInfo.version,
@@ -37,7 +44,7 @@ class UpdaterRepository {
         downloadUrl: isNewer ? downloadUrl : null,
       );
     } catch (e) {
-      debugPrint("Error checking for updates: $e");
+      logger.severe("Error checking for updates: $e");
       return Updater(
         isNewerVersionAvailable: false,
         currentVersion: _packageInfo.version,
@@ -48,20 +55,21 @@ class UpdaterRepository {
   }
 
   Future<void> downloadNewVersion({required String downloadUrl}) async {
+    logger.info("Downloading new version from $downloadUrl");
     FileDownloader.downloadFile(
       url: downloadUrl,
       name: "WorkTrack.apk",
       onProgress: (String? filename, double progress) {
-        debugPrint("filename: $filename, download progress: $progress");
+        logger.info("Filename: $filename, download progress: $progress");
       },
       onDownloadCompleted: (String? path) async {
         if (path != null) {
-          debugPrint("download completed at: $path");
+          logger.info("Download completed at: $path");
           await AndroidPackageInstaller.installApk(apkFilePath: path);
         }
       },
       onDownloadError: (String error) {
-        debugPrint("download error: $error");
+        logger.severe("Download error: $error");
       },
       notificationType: NotificationType.progressOnly,
     );

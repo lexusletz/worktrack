@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:logging/logging.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'updater_model.dart';
 import 'updater_repository.dart';
@@ -14,6 +15,8 @@ final updaterRepositoryProvider = Provider<UpdaterRepository>((ref) {
 });
 
 class UpdaterNotifier extends Notifier<Updater> {
+  final Logger logger = Logger('UpdaterNotifier');
+
   @override
   Updater build() {
     return const Updater(
